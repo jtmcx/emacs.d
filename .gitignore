@@ -1,0 +1,7 @@
+# Whitelist
+*
+!.gitignore
+!README.org
+!init.el
+!early-init.el
+!elpaca-init.el

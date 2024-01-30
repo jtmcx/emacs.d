@@ -1,0 +1,13 @@
+* Emacs Config
+
+This is my emacs setup.
+
+I was a Vim user for over ten years; I hopped over to the dark side
+around 2022 after being introduced to [[https://github.com/doomemacs/doomemacs][Doom Emacs]]. Doom is great, but
+it hides a /lot/ of details from the user. As a result, I felt like my
+emacs-fu was still weak after a year of Doom. In an effort to
+understand emacs better, I dropped Doom and started anew with this
+config.
+
+This config still feels a bit like Doom, but is built on top of [[https://github.com/progfolio/elpaca][elpaca]]
+and [[https://github.com/meow-edit/meow][meow]].
