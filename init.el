@@ -3,8 +3,8 @@
 (add-to-list 'load-path
   (expand-file-name "lisp" user-emacs-directory))
 
-(load "init-elpaca.el")
-(load "init-meow.el")
+(load "setup-elpaca.el")
+(load "setup-meow.el")
 
 (defun font-exists-p (font)
   "Check if a FONT exists."
