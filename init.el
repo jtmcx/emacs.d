@@ -75,6 +75,7 @@
   :config
   (envrc-global-mode))
 
+(load "lang-coq.el")
 (load "lang-haskell.el")
 (load "lang-ocaml.el")
 
