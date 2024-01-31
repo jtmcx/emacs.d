@@ -4,4 +4,8 @@
 !README.org
 !init.el
 !early-init.el
-!elpaca-init.el
+!/lisp
+!/lisp/**
+
+*~
+\#*\#
