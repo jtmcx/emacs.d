@@ -1,17 +1,16 @@
 ;; -*- lexical-binding: t; coding: utf-8 -*-
 
+;; Note: I used to configure the font here, but it's much easier to let
+;; the OS handle it instead. For example, in a gnome environment:
+;;
+;;   $ gsettings set org.gnome.desktop.interface \
+;;             monospace-font-name 'Jet Brains Mono 13'
+
 (add-to-list 'load-path
   (expand-file-name "lisp" user-emacs-directory))
 
 (load "setup-elpaca.el")
 (load "setup-meow.el")
-
-(defun font-exists-p (font)
-  "Check if a FONT exists."
-  (not (null (x-list-fonts font))))
-
-(if (font-exists-p "mononoki")
-  (set-frame-font "mononoki 13" nil t))
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
