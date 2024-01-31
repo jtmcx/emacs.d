@@ -85,5 +85,6 @@
 (load "lang-coq.el")
 (load "lang-haskell.el")
 (load "lang-ocaml.el")
+(load "lang-prolog.el")
 
 (elpaca-wait)
