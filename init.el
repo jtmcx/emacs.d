@@ -58,6 +58,11 @@
   (completion-category-overrides
     '((file (styles basic partial-completion)))))
 
+(use-package which-key
+  :config
+  (which-key-mode)
+  (which-key-setup-side-window-right))
+
 (use-package org)
 
 (use-package flycheck
@@ -67,6 +72,8 @@
   :hook prog-mode)
 
 (use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-l")
+  :hook (lsp-mode . lsp-enable-which-key-integration)
   :commands (lsp lsp-deferred))
 
 (use-package lsp-ui)
