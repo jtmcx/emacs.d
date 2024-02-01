@@ -29,11 +29,27 @@
 (setq display-fill-column-indicator-column 80)
 (global-display-fill-column-indicator-mode)
 
+(defvar load-theme-hook nil
+  "Hook run after `M-x load-theme'.")
+
+;; Modify `load-theme' to run hooks when finished.
+(advice-add 'load-theme :after
+  (lambda (&rest _) (run-hooks 'load-theme-hook)))
+
+(defun catppuccin-proof-mode-theme ()
+  "Configure Proof General faces with catppuccin colors."
+  (let ((ctp-surface1 (catppuccin-get-color 'surface1))
+        (ctp-surface2 (catppuccin-get-color 'surface2)))
+  (custom-set-faces `(proof-locked-face ((t (:background ,ctp-surface1)))))
+  (custom-set-faces `(proof-queue-face  ((t (:background ,ctp-surface2)))))))
+
 (use-package catppuccin-theme
   :custom
   (catppuccin-italic-comments t)
   (catppuccin-enlarge-headings nil)
+  (catppuccin-flavor 'mocha)
   :config
+  (add-hook 'load-theme-hook #'catppuccin-proof-mode-theme)
   (load-theme 'catppuccin :no-confirm))
 
 (use-package solaire-mode
