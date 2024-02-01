@@ -26,7 +26,7 @@
 (global-display-line-numbers-mode)
 
 ;; Display a fill column at 80 characters.
-(setq display-fill-column-indicator-column 80)
+(setq-default display-fill-column-indicator-column 80)
 (global-display-fill-column-indicator-mode)
 
 (defvar load-theme-hook nil
@@ -38,7 +38,7 @@
 
 (defun catppuccin-proof-mode-theme ()
   "Configure Proof General faces with catppuccin colors."
-  (let ((ctp-surface1 (catppuccin-get-color 'surface1))
+  (let ((ctp-surface1 (catppuccin-get-color 'surface0))
         (ctp-surface2 (catppuccin-get-color 'surface2)))
   (custom-set-faces `(proof-locked-face ((t (:background ,ctp-surface1)))))
   (custom-set-faces `(proof-queue-face  ((t (:background ,ctp-surface2)))))))
