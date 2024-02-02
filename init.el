@@ -21,13 +21,17 @@
 (setq initial-scratch-message "")
 
 ;; Line numbers with a gutter wide enough for three digits.
-(setq display-line-numbers-width-start 100)
-(setq display-line-numbers-grow-only t)
-(global-display-line-numbers-mode)
+(setq-default display-line-numbers-width-start 100)
+(setq-default display-line-numbers-grow-only t)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+;; Show column number in the mode-line; hide percentage.
+(setq mode-line-percent-position nil)
+(column-number-mode)
 
 ;; Display a fill column at 80 characters.
 (setq-default display-fill-column-indicator-column 80)
-(global-display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
 (defvar load-theme-hook nil
   "Hook run after `M-x load-theme'.")
@@ -36,12 +40,33 @@
 (advice-add 'load-theme :after
   (lambda (&rest _) (run-hooks 'load-theme-hook)))
 
-(defun catppuccin-proof-mode-theme ()
-  "Configure Proof General faces with catppuccin colors."
-  (let ((ctp-surface1 (catppuccin-get-color 'surface0))
+;; By default, themes *cannot* be modified at runtime. Disabling this
+;; option allows the use of `custom-theme-set-*` functions during init.
+(setq custom--inhibit-theme-enable nil)
+
+(defun catppuccin-theme-alterations ()
+  "Apply alterations to the default catppuccin theme."
+  (let ((ctp-crust    (catppuccin-get-color 'crust))
+        (ctp-surface0 (catppuccin-get-color 'surface0))
+        (ctp-surface1 (catppuccin-get-color 'surface1))
         (ctp-surface2 (catppuccin-get-color 'surface2)))
-  (custom-set-faces `(proof-locked-face ((t (:background ,ctp-surface1)))))
-  (custom-set-faces `(proof-queue-face  ((t (:background ,ctp-surface2)))))))
+    (custom-theme-set-faces 'catppuccin
+     ;; In my opinion, the modeline doesn't have enough contrast,
+     ;; especially when `solaire-mode` is active.
+     `(mode-line
+	((t (:box        nil
+             :overline   ,ctp-surface0
+             :underline  ,ctp-surface0
+             :background ,ctp-crust))))
+     `(mode-line-inactive
+	((t (:box        nil
+             :overline   ,ctp-surface0
+             :underline  ,ctp-surface0
+             :background ,ctp-crust))))
+
+     ;; Configure colors for Proof General.
+     `(proof-locked-face ((t (:background ,ctp-surface1))) t)
+     `(proof-queue-face  ((t (:background ,ctp-surface2))) t))))
 
 (use-package catppuccin-theme
   :custom
@@ -49,12 +74,22 @@
   (catppuccin-enlarge-headings nil)
   (catppuccin-flavor 'mocha)
   :config
-  (add-hook 'load-theme-hook #'catppuccin-proof-mode-theme)
+  (add-hook 'load-theme-hook #'catppuccin-theme-alterations)
   (load-theme 'catppuccin :no-confirm))
 
 (use-package solaire-mode
   :config
   (solaire-global-mode))
+
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+
+(use-package minions
+  :init
+  (minions-mode))
 
 (use-package vi-tilde-fringe
   :hook prog-mode)
@@ -75,8 +110,7 @@
 
 (use-package which-key
   :config
-  (which-key-mode)
-  (which-key-setup-side-window-right))
+  (which-key-mode))
 
 (use-package org)
 
