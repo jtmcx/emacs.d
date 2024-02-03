@@ -2,10 +2,14 @@
 
 This is my emacs setup.
 
-I was a Vim user for over ten years. In 2022, I discovered [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+I was a Vim user for over ten years. In 2022, I discovered [[https://github.com/doomemacs/doomemacs][Doom Emacs]],
 and hopped over to the dark side. Doom is great, but it does a little
 too much hand-holding (after a year of Doom, my emacs-fu still felt
-weak). In order to become one with my editor, I eventually dropped Doom
-and started fresh with what is now this config.
+weak). I eventually dropped Doom and started fresh with what is now
+this config.
 
-[[./assets/screenshot.png]]
+** Screenshots
+
+[[./assets/screenshot-light.png]]
+
+[[./assets/screenshot-dark.png]]
