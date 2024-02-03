@@ -82,6 +82,8 @@
   (solaire-global-mode))
 
 (use-package moody
+  ;; Use a custom fork of moody that is aware of solaire-mode.
+  :elpaca '(moody :host github :repo "jtmcx/moody" :branch "solaire-mode")
   :config
   (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)
