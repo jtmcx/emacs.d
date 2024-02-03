@@ -5,7 +5,8 @@
 (use-package company-coq
   :hook coq-mode
   :custom
-  (company-coq-disabled-features '(hello prettify-symbols spinner)))
+  (company-coq-disabled-features
+   '(hello prettify-symbols smart-subscripts spinner)))
 
 ;; The Proof General keybindings are fine, but I generally prefer the
 ;; keybindings in coqide (they're shorter). I've replicated the most
