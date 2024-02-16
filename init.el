@@ -54,15 +54,18 @@
      ;; In my opinion, the modeline doesn't have enough contrast,
      ;; especially when `solaire-mode` is active.
      `(mode-line
-	((t (:box        nil
-             :overline   ,ctp-surface0
-             :underline  ,ctp-surface0
-             :background ,ctp-crust))))
+       ((t (:box        nil
+            :overline   ,ctp-surface0
+            :underline  ,ctp-surface0
+            :background ,ctp-crust))))
      `(mode-line-inactive
-	((t (:box        nil
-             :overline   ,ctp-surface0
-             :underline  ,ctp-surface0
-             :background ,ctp-crust))))
+       ((t (:box        nil
+            :overline   ,ctp-surface0
+            :underline  ,ctp-surface0
+            :background ,ctp-crust))))
+
+     ;; Configure colors for keycast.
+     `(keycast-key ((t (:background ,ctp-surface0))))
 
      ;; Configure colors for Proof General.
      `(proof-locked-face ((t (:background ,ctp-surface1))) t)
@@ -78,31 +81,44 @@
   (load-theme 'catppuccin :no-confirm))
 
 (use-package solaire-mode
-  :config
-  (solaire-global-mode))
+  :config (solaire-global-mode))
+
+(use-package vi-tilde-fringe
+  :hook prog-mode)
+
+
+;; Mode-line Configuration
+;; ----------------------------------------------------------------------------
 
 (use-package moody
   ;; Use a custom fork of moody that is aware of solaire-mode.
-  :elpaca '(moody :host github :repo "jtmcx/moody" :branch "solaire-mode")
+  :elpaca '(moody :host github
+		  :repo "jtmcx/moody"
+		  :branch "solaire-mode")
   :config
   (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
 (use-package minions
-  :init
-  (minions-mode))
+  :init (minions-mode))
 
-(use-package vi-tilde-fringe
-  :hook prog-mode)
+(use-package keycast
+  :config
+  ;; Someday it would be nice for keycast to be wrapped in a moody ribbon.
+  (setq keycast-mode-line-format "%2s%k%c%R")
+  (setq keycast-mode-line-remove-tail-elements nil)
+  (setq keycast-mode-line-insert-after 'minions-mode-line-modes))
+
+
+;; Completion Interface
+;; ----------------------------------------------------------------------------
 
 (use-package vertico
-  :init
-  (vertico-mode))
+  :init (vertico-mode))
 
 (use-package marginalia
-  :init
-  (marginalia-mode))
+  :init (marginalia-mode))
 
 (use-package orderless
   :custom
@@ -111,8 +127,11 @@
     '((file (styles basic partial-completion)))))
 
 (use-package which-key
-  :config
-  (which-key-mode))
+  :config (which-key-mode))
+
+
+;; Developer Tools
+;; ----------------------------------------------------------------------------
 
 (use-package org)
 
@@ -132,6 +151,10 @@
 (use-package envrc
   :config
   (envrc-global-mode))
+
+
+;; Language Specific Configuration
+;; ----------------------------------------------------------------------------
 
 (load "lang-coq.el")
 (load "lang-haskell.el")
