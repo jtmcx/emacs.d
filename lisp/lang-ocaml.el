@@ -3,3 +3,5 @@
 (use-package tuareg
   :config
   (add-hook 'tuareg-mode-hook #'lsp))
+
+(use-package dune)
