@@ -33,6 +33,8 @@
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
+(windmove-default-keybindings 'meta)
+
 (defvar load-theme-hook nil
   "Hook run after `M-x load-theme'.")
 
@@ -133,7 +135,7 @@
 ;; Developer Tools
 ;; ----------------------------------------------------------------------------
 
-(use-package org)
+(use-package anzu)
 
 (use-package flycheck
   :hook prog-mode)
@@ -152,6 +154,7 @@
   :config
   (envrc-global-mode))
 
+(use-package magit)
 
 ;; Language Specific Configuration
 ;; ----------------------------------------------------------------------------
@@ -160,5 +163,14 @@
 (load "lang-haskell.el")
 (load "lang-ocaml.el")
 (load "lang-prolog.el")
+(load "lang-racket.el")
+
+;; Org-mode
+;; ----------------------------------------------------------------------------
+
+(use-package org)
+(setq org-src-preserve-indentation 1)
+
+(use-package htmlize)
 
 (elpaca-wait)

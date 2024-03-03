@@ -207,12 +207,12 @@ By default, emacs binds ~C-v~ and ~M-v~ to ~scroll-up-command~ and
 ~scroll-down-command~.  I don't use these bindings, and intead ---
 thanks to years of Vim --- prefer ~C-d~ and ~C-u~.
 
-It's fairly safe to rebind ~C-d~ to something
-~scroll-down-command~. By default, it's bound to ~delete-char~, which
-is not very useful when using meow. ~C-u~, on the other hand, is bound
-to ~universal-argument~, which /is/ useful. I chose to rebind
-~universal-argument~ to ~C-v~. Ultimately, this is a slightly awkward
-decision, but it's one I live with.
+It's fairly safe to rebind ~C-d~ to ~scroll-down-command~. By default,
+it's bound to ~delete-char~, which is not very useful when using
+meow. ~C-u~, on the other hand, is bound to ~universal-argument~,
+which /is/ useful. I chose to rebind ~universal-argument~ to
+~C-v~. Ultimately, this is a slightly awkward decision, but it's one I
+live with.
 
 Running ~M-x universal-argument~ will unfortunately print "C-u" in the
 minibuffer, even if it's remapped to ~C-v~. The "C-u" text is
