@@ -38,12 +38,25 @@
 
 (windmove-default-keybindings 'meta)
 
+
+;; Theme
+;; ----------------------------------------------------------------------------
+
 (defvar load-theme-hook nil
   "Hook run after `M-x load-theme'.")
 
 ;; Modify `load-theme' to run hooks when finished.
 (advice-add 'load-theme :after
   (lambda (&rest _) (run-hooks 'load-theme-hook)))
+
+(use-package catppuccin-theme
+  :custom
+  (catppuccin-italic-comments t)
+  (catppuccin-enlarge-headings nil)
+  (catppuccin-flavor 'macchiato)
+  :config
+  (add-hook 'load-theme-hook #'catppuccin-theme-alterations)
+  (load-theme 'catppuccin :no-confirm))
 
 ;; By default, themes *cannot* be modified at runtime. Disabling this
 ;; option allows the use of `custom-theme-set-*` functions during init.
@@ -72,18 +85,22 @@
      ;; Configure colors for keycast.
      `(keycast-key ((t (:background ,ctp-surface0))))
 
+     ;; Lower the contrast for the fill-column-indicator
+     `(fill-column-indicator ((t (:foreground ,ctp-surface1))))
+
      ;; Configure colors for Proof General.
      `(proof-locked-face ((t (:background ,ctp-surface1))) t)
      `(proof-queue-face  ((t (:background ,ctp-surface2))) t))))
 
-(use-package catppuccin-theme
-  :custom
-  (catppuccin-italic-comments t)
-  (catppuccin-enlarge-headings nil)
-  (catppuccin-flavor 'mocha)
-  :config
-  (add-hook 'load-theme-hook #'catppuccin-theme-alterations)
-  (load-theme 'catppuccin :no-confirm))
+(defun my/dark-mode ()
+  "Toggle light and dark catppuccin themes."
+  (interactive)
+  (when (member 'catppuccin custom-enabled-themes)
+    (if (eq catppuccin-flavor 'latte)
+        (catppuccin-load-flavor 'macchiato)
+      (catppuccin-load-flavor 'latte))))
+
+(global-set-key (kbd "<f9>") 'my/dark-mode)
 
 (use-package solaire-mode
   :config (solaire-global-mode))
