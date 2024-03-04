@@ -12,7 +12,10 @@
 (load "setup-elpaca.el")
 (load "setup-meow.el")
 
+;; Don't show the menu bar. It can be toggled with <f10>.
 (menu-bar-mode -1)
+(global-set-key (kbd "<f10>") 'menu-bar-mode)
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
@@ -155,6 +158,9 @@
   (envrc-global-mode))
 
 (use-package magit)
+
+(use-package ws-butler
+  :hook prog-mode)
 
 ;; Language Specific Configuration
 ;; ----------------------------------------------------------------------------
