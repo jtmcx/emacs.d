@@ -38,7 +38,6 @@
 
 (windmove-default-keybindings 'meta)
 
-
 ;; Theme
 ;; ----------------------------------------------------------------------------
 
@@ -108,7 +107,6 @@
 (use-package vi-tilde-fringe
   :hook prog-mode)
 
-
 ;; Mode-line Configuration
 ;; ----------------------------------------------------------------------------
 
@@ -132,7 +130,6 @@
   (setq keycast-mode-line-remove-tail-elements nil)
   (setq keycast-mode-line-insert-after 'minions-mode-line-modes))
 
-
 ;; Completion Interface
 ;; ----------------------------------------------------------------------------
 
@@ -150,7 +147,6 @@
 
 (use-package which-key
   :config (which-key-mode))
-
 
 ;; Developer Tools
 ;; ----------------------------------------------------------------------------
