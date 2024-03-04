@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; coding: utf-8 -*-
 
-(use-package proof-general)
+(use-package proof-general
+  :custom
+  (proof-splash-enable nil))
 
 (use-package company-coq
   :hook coq-mode
