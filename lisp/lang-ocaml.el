@@ -5,3 +5,5 @@
   (add-hook 'tuareg-mode-hook #'lsp))
 
 (use-package dune)
+
+(use-package ocp-indent)
