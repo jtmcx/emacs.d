@@ -93,7 +93,7 @@ Using shift with the arrow keys will extend the current selection:
 
 #+BEGIN_SRC elisp
   (meow-leader-define-key
-   '("!" . shell)
+   '("!" . eshell)
    '("/" . meow-keypad-describe-key)
    '("?" . meow-cheatsheet))
 #+END_SRC

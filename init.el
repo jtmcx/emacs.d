@@ -28,8 +28,6 @@
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-(windmove-default-keybindings 'meta)
-
 ;; Theme
 ;; ----------------------------------------------------------------------------
 
@@ -122,7 +120,7 @@
   (setq keycast-mode-line-remove-tail-elements nil)
   (setq keycast-mode-line-insert-after 'minions-mode-line-modes))
 
-;; Completion Interface
+;; Completion Interface and Window Management
 ;; ----------------------------------------------------------------------------
 
 (use-package vertico
@@ -138,7 +136,29 @@
     '((file (styles basic partial-completion)))))
 
 (use-package which-key
-  :config (which-key-mode))
+  :init (which-key-mode)
+  :config
+  ;; Use the minibuffer; which-key doesn't play nice with popper.
+  (which-key-setup-minibuffer))
+
+(use-package popper
+  :bind (("C-`"   . popper-toggle)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async"
+	  "\\*elpaca"
+	  "\\*eshell\\*"
+	  "\\*Flycheck"
+          help-mode
+          compilation-mode))
+  (popper-mode +1))
+
+;; Meta + arrow keys will switch windows.
+(windmove-default-keybindings 'meta)
 
 ;; Developer Tools
 ;; ----------------------------------------------------------------------------

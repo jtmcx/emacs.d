@@ -62,7 +62,7 @@
    '("S-<right>" . meow-right-expand))
 
   (meow-leader-define-key
-   '("!" . shell)
+   '("!" . eshell)
    '("/" . meow-keypad-describe-key)
    '("?" . meow-cheatsheet))
 
