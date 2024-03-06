@@ -12,16 +12,8 @@
 (load "setup-elpaca.el")
 (load "setup-meow.el")
 
-;; Don't show the menu bar. It can be toggled with <f10>.
-(menu-bar-mode -1)
+;; Toggle menu-bar with <f10>.
 (global-set-key (kbd "<f10>") 'menu-bar-mode)
-
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-
-;; Show an empty scratch buffer on startup.
-(setq inhibit-startup-screen t)
-(setq initial-scratch-message "")
 
 ;; Line numbers with a gutter wide enough for three digits.
 (setq-default display-line-numbers-width-start 100)
