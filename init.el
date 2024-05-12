@@ -156,15 +156,7 @@
          ("M-`"   . popper-cycle)
          ("C-M-`" . popper-toggle-type))
   :init
-  (setq popper-reference-buffers
-        '("\\*Messages\\*"
-          "Output\\*$"
-          "\\*Async"
-	  "\\*elpaca"
-	  "\\*eshell\\*"
-	  "\\*Flycheck"
-          help-mode
-          compilation-mode))
+  (setq popper-reference-buffers '("^\\*.*\\*$"))
   (popper-mode +1))
 
 ;; Meta + arrow keys will switch windows.
