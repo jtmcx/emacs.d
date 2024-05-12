@@ -6,6 +6,8 @@
 ;;   $ gsettings set org.gnome.desktop.interface \
 ;;             monospace-font-name 'Jet Brains Mono 13'
 
+(require 'xdg)
+
 (add-to-list 'load-path
   (expand-file-name "lisp" user-emacs-directory))
 
@@ -27,6 +29,14 @@
 ;; Display a fill column at 80 characters.
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+
+;; I can't stand electric indent.
+(electric-indent-mode -1)
+
+;; Move backups and auto-saves to the XDG cache.
+(let ((cache (concat (file-name-as-directory (xdg-cache-home)) "emacs/saves")))
+  (setq backup-directory-alist `((".*" . ,cache)))
+  (setq auto-save-file-name-transforms `((".*" ,cache t))))
 
 ;; Theme
 ;; ----------------------------------------------------------------------------
