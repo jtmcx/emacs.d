@@ -197,6 +197,8 @@
 (load "lang-ocaml.el")
 (load "lang-prolog.el")
 (load "lang-racket.el")
+(load "lang-c.el")         ;; C, C++, Objective-C, etc.
+(load "lang-go.el")
 
 ;; Org-mode
 ;; ----------------------------------------------------------------------------
