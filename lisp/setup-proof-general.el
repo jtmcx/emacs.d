@@ -15,9 +15,6 @@
                       ("coq" "coq/*.el")
                       "easycrypt" "phox" "qrhl"
                       "pghaskell" "pgocaml" "pgshell"
-		      ("abella" "abella/*.el")))
+		      ("abella" "abella/abella.el" "abella/abella-syntax.el")))
   :custom
-  (proof-splash-enable nil)
-  :config
-  (add-to-list 'auto-mode-alist '("\\.mod\\'" . lprolog-mode))
-  (add-to-list 'auto-mode-alist '("\\.sig\\'" . lprolog-mode)))
+  (proof-splash-enable nil))
